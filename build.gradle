@@ -1,6 +1,7 @@
 plugins {
-  id 'application'
-  id 'org.openjfx.javafxplugin' version '0.0.8'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+    id 'org.beryx.jlink' version '2.12.0'
 }
 
 repositories {
@@ -8,8 +9,18 @@ repositories {
 }
 
 javafx {
-    version = "11"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    version = "11.0.2"
+    modules = ['javafx.controls', 'javafx.fxml']
 }
 
-mainClassName = 'org.acraftydev.HelloFX'
+application {
+    mainClassName = 'hellofx/org.acraftydev.HelloFX'
+    applicationDefaultJvmArgs = [
+            "-Djava.rmi.server.hostname=gollum",
+            "-Dcom.sun.management.jmxremote",
+            "-Dcom.sun.management.jmxremote.port=5002",
+            "-Dcom.sun.management.jmxremote.rmi.port=5002",
+            "-Dcom.sun.management.jmxremote.authenticate=false",
+            "-Dcom.sun.management.jmxremote.ssl=false"
+    ]
+}
